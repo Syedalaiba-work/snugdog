@@ -1,0 +1,124 @@
+/* The one inverted section: black ground, white stock. Still only black and white. */
+.packaging {
+  overflow: clip;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.track {
+  padding: clamp(5rem, 14vh, 10rem) var(--gutter);
+}
+
+.head {
+  margin-bottom: clamp(3rem, 8vh, 5rem);
+}
+
+.kicker {
+  margin-bottom: 1.25rem;
+  opacity: 0.6;
+}
+
+.title {
+  font-size: clamp(3rem, 7.6vw, 8.5rem);
+}
+
+.lede {
+  max-width: 24rem;
+  margin-top: 2rem;
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  opacity: 0.7;
+}
+
+.pieces {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
+  list-style: none;
+}
+
+.flat {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  transition: transform 0.7s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .piece:hover .flat {
+    transform: translateY(-0.75rem) rotate(-2deg);
+  }
+}
+
+.stock {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.fold {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* folds drawn over white stock are inked instead */
+.stock ~ .fold {
+  stroke: var(--ink);
+}
+
+.ink {
+  color: var(--ink);
+  stroke-width: 2.6;
+}
+
+.wordmark {
+  fill: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  letter-spacing: -0.01em;
+}
+
+.caption {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(250, 248, 243, 0.3);
+}
+
+.caption p {
+  opacity: 0.7;
+}
+
+.name {
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+}
+
+/* ---------- tablet and mobile: a swipeable row ---------- */
+
+@media (max-width: 900px) {
+  .pieces {
+    display: flex;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 0 var(--gutter) 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .piece {
+    flex: none;
+    width: min(22rem, 72vw);
+    scroll-snap-align: center;
+  }
+}
+
+/* line art drawn straight onto the black ground */
+.chalk {
+  color: var(--paper);
+  stroke-width: 2.6;
+}

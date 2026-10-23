@@ -1,0 +1,36 @@
+{
+  "name": "snugdog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "3d:check": "node assets/3d/scripts/blender.mjs",
+    "3d:hotdog": "node assets/3d/scripts/blender.mjs build_hotdog.py",
+    "typecheck": "tsc --noEmit",
+    "3d:mascot": "node assets/3d/scripts/blender.mjs ../mascot/scripts/build_mascot.py",
+    "3d:labels": "node assets/3d/scripts/make_labels.mjs",
+    "3d:packaging": "node assets/3d/scripts/blender.mjs build_packaging.py"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.1",
+    "gsap": "^3.15.0",
+    "next": "16.3.8",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.8",
+    "puppeteer-core": "^25.12.0",
+    "typescript": "^5"
+  }
+}

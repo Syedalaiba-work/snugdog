@@ -1,0 +1,74 @@
+.footer {
+  overflow: clip;
+  padding: clamp(4rem, 10vh, 7rem) var(--gutter) 1.5rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: clamp(2.5rem, 6vh, 4rem);
+  border-bottom: 1px solid rgba(250, 248, 243, 0.25);
+}
+
+.sign {
+  font-size: clamp(4rem, 13vw, 14rem);
+}
+
+/* the one primary button, inverted for the black ground */
+.button {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.mid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2.5rem 0 1rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.5rem;
+}
+
+.links a {
+  padding: 0.5rem 0;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color var(--dur-fast) ease;
+}
+
+.links a:hover,
+.links a:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+.snug svg {
+  width: clamp(5rem, 9vw, 8rem);
+  height: auto;
+  stroke-width: 2.6;
+}
+
+.wordmark {
+  margin: 0 -0.04em;
+  font-size: 27.4vw;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.base {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  opacity: 0.6;
+}

@@ -1,0 +1,32 @@
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 18 / 13;
+}
+
+.still,
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.still {
+  object-fit: contain;
+}
+
+.still[data-current] {
+  opacity: 1;
+}
+
+/* realtime takes over once the model is on screen */
+.stage[data-mode="3d"] .canvas {
+  opacity: 1;
+}
+
+.stage[data-mode="3d"] .still {
+  opacity: 0;
+}

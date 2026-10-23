@@ -1,0 +1,337 @@
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: max(100svh, 44rem);
+  padding: var(--nav-h) var(--gutter) 0;
+  overflow: clip;
+  --foot-h: 4.25rem;
+}
+
+/* ---------- copy ---------- */
+
+.copy {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  padding-block: clamp(1rem, 3vh, 2.5rem);
+}
+
+.title {
+  font-size: min(var(--text-display), 21svh);
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* each line is a mask the text rises through */
+.line {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.08em;
+  margin-top: -0.08em;
+}
+
+.line > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+.lede {
+  max-width: 24rem;
+  margin-top: clamp(1.25rem, 3vh, 2rem);
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 2rem;
+  margin-top: clamp(1.25rem, 3.5vh, 2.25rem);
+}
+
+/* ---------- scene: the real hot dog, and Snug looking at it ----------
+   One box holds both, so their relationship is the same at every size.
+   The hot dog fills the upper right; Snug stands at the lower left on the rule. */
+
+.scene {
+  position: absolute;
+  z-index: 2;
+  right: var(--gutter);
+  bottom: var(--foot-h);
+  height: min(44vw, 100svh - var(--nav-h) - var(--foot-h) - 0.5rem);
+  aspect-ratio: 5 / 4;
+  pointer-events: none;
+}
+
+.food,
+.snug {
+  position: absolute;
+}
+
+.food img,
+.snug img {
+  width: 100%;
+  height: auto;
+}
+
+.food {
+  top: 0;
+  right: 0;
+  width: 60%;
+}
+
+/* a cut-out needs its own shadow to sit on the page */
+.food img {
+  filter: drop-shadow(0 1.6vw 1.6vw rgba(40, 24, 8, 0.28));
+}
+
+.snug {
+  left: 0;
+  bottom: -1.5%;
+  width: 41%;
+}
+
+/* soft ground under his feet; it also hides the rough bottom edge of the cut-out */
+.snug::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 4%;
+  bottom: -1%;
+  height: 12%;
+  background: radial-gradient(closest-side, rgba(30, 20, 10, 0.34), transparent);
+  z-index: -1;
+}
+
+.snug img {
+  -webkit-mask-image: linear-gradient(#000 88%, transparent 99%);
+  mask-image: linear-gradient(#000 88%, transparent 99%);
+}
+
+.foodShift,
+.foodDrift,
+.snugShift,
+.snugDrift {
+  will-change: transform;
+}
+
+.note {
+  position: absolute;
+  display: flex;
+  color: var(--ink);
+}
+
+.noteFood {
+  top: 1%;
+  left: 29%;
+  align-items: flex-start;
+  gap: 0.5rem;
+  transform: rotate(-4deg);
+}
+
+.noteFood svg {
+  width: 4.25rem;
+  height: auto;
+  margin-top: 0.6rem;
+}
+
+.noteSnug {
+  left: 43%;
+  bottom: 5%;
+  align-items: flex-end;
+  gap: 0.25rem;
+  transform: rotate(2deg);
+}
+
+/* the loop arrow, turned to point up from Snug toward the food */
+.noteSnug svg {
+  width: 4.25rem;
+  height: auto;
+  margin-bottom: 0.9rem;
+  transform: scaleY(-1) rotate(18deg);
+}
+
+/* ---------- foot ---------- */
+
+.foot {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--foot-h);
+  border-top: 1px solid var(--rule);
+}
+
+.scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+}
+
+.scrollLine {
+  position: relative;
+  width: 2.5rem;
+  height: 1px;
+  overflow: hidden;
+  background: var(--rule);
+}
+
+.scrollLine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateX(-100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scrollLine::after {
+    animation: sweep 2.4s var(--ease-in-out) infinite;
+  }
+}
+
+@keyframes sweep {
+  50% {
+    transform: none;
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.caption span {
+  margin-right: 0.75rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- tablet and mobile: stacked story, same scene ---------- */
+
+@media (max-width: 1100px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding-top: calc(var(--nav-h) + 1.5rem);
+  }
+
+  .copy {
+    display: contents;
+  }
+
+  .title {
+    order: 1;
+    font-size: min(17.6vw, 11rem);
+  }
+
+  .scene {
+    order: 2;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    height: auto;
+    width: min(100%, 44rem);
+    margin: 1rem auto 0.5rem;
+  }
+
+  .lede {
+    order: 3;
+    margin-top: 1rem;
+  }
+
+  .actions {
+    order: 4;
+    margin-top: 1.5rem;
+  }
+
+  .foot {
+    order: 5;
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-top: 5.25rem;
+  }
+
+  .lede {
+    font-size: var(--text-md);
+  }
+
+  .actions > :first-child {
+    flex: 1 1 100%;
+  }
+
+  .noteFood {
+    left: 0;
+    top: 0;
+  }
+
+  .noteSnug {
+    display: none;
+  }
+}
+
+/* ---------- idle life ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  /* the food hovers; Snug breathes and now and then cocks his head */
+  .food img {
+    animation: hover 6.5s ease-in-out infinite;
+  }
+
+  .snug img {
+    transform-origin: 50% 100%;
+    animation: breathe 3.4s ease-in-out infinite, perk 9s ease-in-out 3s infinite;
+  }
+
+  /* hand-drawn "boil": the line work shivers between a few poses, like redrawn frames */
+  .note svg {
+    animation: boil 0.9s steps(1) infinite;
+  }
+}
+
+@keyframes hover {
+  50% {
+    transform: translateY(-2.2%) rotate(-1.6deg);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    scale: 1.012 1.022;
+  }
+}
+
+@keyframes perk {
+  0%,
+  78%,
+  100% {
+    rotate: 0deg;
+  }
+  84% {
+    rotate: -2.4deg;
+  }
+  92% {
+    rotate: 1.2deg;
+  }
+}
+
+@keyframes boil {
+  0% {
+    translate: 0 0;
+  }
+  33% {
+    translate: 0.6px -0.5px;
+    filter: url(#boil-a);
+  }
+  66% {
+    translate: -0.5px 0.6px;
+    filter: url(#boil-b);
+  }
+}

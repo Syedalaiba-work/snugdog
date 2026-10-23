@@ -1,0 +1,123 @@
+.story {
+  padding: clamp(5rem, 14vh, 10rem) var(--gutter) clamp(3rem, 8vh, 6rem);
+  background: var(--white);
+}
+
+.head {
+  margin-bottom: clamp(2rem, 6vh, 4rem);
+}
+
+.kicker {
+  margin-bottom: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.title {
+  font-size: clamp(3rem, 8.4vw, 9rem);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  border-top: 1px solid var(--ink);
+}
+
+/* ---------- mascot stage ---------- */
+
+.mascot {
+  position: sticky;
+  top: 12vh;
+  align-self: start;
+  display: grid;
+  align-content: center;
+  height: 76vh;
+  scale: 1.22;
+  transform-origin: 40% 55%;
+}
+
+.hello {
+  position: absolute;
+  top: 6%;
+  left: 4%;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  transform: rotate(-5deg);
+}
+
+.hello svg {
+  width: 4.25rem;
+  height: auto;
+  margin-top: 0.6rem;
+}
+
+/* ---------- beliefs ---------- */
+
+.beliefs {
+  list-style: none;
+}
+
+.belief {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 62vh;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
+  opacity: 0.3;
+  transition: opacity 0.5s ease;
+}
+
+.belief[data-active] {
+  opacity: 1;
+}
+
+.belief:last-child {
+  border-bottom: 0;
+}
+
+.beliefTitle {
+  font-size: clamp(2.75rem, 6vw, 6rem);
+  color: var(--ink);
+}
+
+.beliefBody {
+  max-width: 24rem;
+  font-size: var(--text-lg);
+  line-height: 1.45;
+}
+
+/* ---------- tablet and mobile ---------- */
+
+@media (max-width: 900px) {
+  .body {
+    display: block;
+  }
+
+  /* the mascot stays pinned at the top while the beliefs pass beneath it */
+  .mascot {
+    top: 4rem;
+    z-index: 1;
+    height: auto;
+    scale: 1;
+    padding: 0.5rem 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .mascot > :first-child {
+    max-width: 22rem;
+    margin: 0 auto;
+  }
+
+  .hello {
+    display: none;
+  }
+
+  .belief {
+    min-height: 46vh;
+  }
+}

@@ -1,0 +1,230 @@
+/* SNUGDOG design system foundation.
+   The interface is monochrome: paper, white and ink. Food provides the colour. */
+
+:root {
+  /* colour */
+  --paper: #faf8f3;
+  --white: #ffffff;
+  --ink: #0b0b0b;
+  --ink-soft: #5a5750;
+  --rule: rgba(11, 11, 11, 0.14);
+
+  /* type */
+  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-body: var(--font-archivo), system-ui, sans-serif;
+  --font-hand: var(--font-caveat), "Segoe Print", cursive;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.1875rem;
+  --text-hand: 1.5rem;
+  --text-display: clamp(4.25rem, 11.6vw, 13.5rem);
+
+  /* space */
+  --gutter: clamp(1.25rem, 3.4vw, 3.5rem);
+  --nav-h: 4.75rem;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur: 420ms;
+
+  --doodle-stroke: 2;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100svh;
+  overflow-x: clip;
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ---------- type voices ---------- */
+
+/* Display: heavy, condensed, editorial. Headlines only. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 62%;
+  text-transform: uppercase;
+  letter-spacing: -0.012em;
+  line-height: 0.86;
+}
+
+/* Label: small caps-style utility text for nav, captions, meta. */
+.label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Hand: annotations and callouts only. Never headings or body. */
+.hand {
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+/* A line of a headline that rises through its own mask (see RiseLines). */
+.rise-line {
+  display: block;
+  overflow: hidden;
+  padding-top: 0.08em;
+  margin-top: -0.08em;
+}
+
+.rise-line > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---------- doodle system ---------- */
+
+.doodle {
+  flex: none;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--doodle-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.doodle [data-fill] {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ---------- motion entry states ----------
+   Elements marked data-reveal / data-draw start hidden only when motion is welcome;
+   GSAP reveals them. The delayed animation is a safety net if scripts never run. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    visibility: hidden;
+    animation: reveal-fallback 0s 4s forwards;
+  }
+
+  .doodle[data-draw] > :not([data-fill]) {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1.001;
+    animation: draw-fallback 0s 4s forwards;
+  }
+
+  .doodle[data-draw] > [data-fill] {
+    opacity: 0;
+    animation: fill-fallback 0s 4s forwards;
+  }
+}
+
+@keyframes reveal-fallback {
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes draw-fallback {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fill-fallback {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

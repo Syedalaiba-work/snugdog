@@ -1,0 +1,192 @@
+.menu {
+  padding: clamp(5rem, 14vh, 10rem) var(--gutter) clamp(3rem, 8vh, 6rem);
+  /* the inline photos on small screens bleed into the gutters; never past the page edge.
+     clip (not hidden) keeps the sticky food stage working on desktop. */
+  overflow-x: clip;
+}
+
+.head {
+  margin-bottom: clamp(2rem, 6vh, 4rem);
+}
+
+.kicker {
+  margin-bottom: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.title {
+  font-size: clamp(3.5rem, 10vw, 11rem);
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  border-top: 1px solid var(--ink);
+}
+
+/* ---------- list ---------- */
+
+.list {
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 78vh;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--rule);
+  opacity: 0.28;
+  transition: opacity 0.5s ease;
+}
+
+.item[data-active] {
+  opacity: 1;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.inline {
+  display: none;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: var(--ink-soft);
+}
+
+.price {
+  font-size: var(--text-md);
+  color: var(--ink);
+}
+
+.name {
+  font-size: clamp(3rem, 6.4vw, 6.5rem);
+}
+
+.line {
+  max-width: 26rem;
+  margin-top: 1.25rem;
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+.details li {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--ink);
+}
+
+.order {
+  align-self: flex-start;
+  margin-top: 2rem;
+}
+
+/* ---------- sticky food stage ---------- */
+
+.stage {
+  position: sticky;
+  top: 11vh;
+  align-self: start;
+  height: 78vh;
+}
+
+.plate {
+  position: absolute;
+  inset: 0;
+}
+
+.shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(4%) rotate(-3deg) scale(0.94);
+  transition:
+    opacity 0.55s ease,
+    transform 0.9s var(--ease-out);
+}
+
+.shot[data-active] {
+  opacity: 1;
+  transform: none;
+}
+
+.note {
+  position: absolute;
+  right: 4%;
+  bottom: 12%;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+  transform: rotate(3deg);
+  animation: note-in 0.6s var(--ease-out) both;
+}
+
+.note svg {
+  width: 4.25rem;
+  height: auto;
+  margin-bottom: 0.9rem;
+  transform: scale(-1, -1) rotate(20deg);
+}
+
+@keyframes note-in {
+  from {
+    opacity: 0;
+    translate: 0 0.75rem;
+  }
+}
+
+.count {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.count span {
+  color: var(--ink-soft);
+}
+
+/* ---------- tablet and mobile: each dog carries its own photo ---------- */
+
+@media (max-width: 900px) {
+  .body {
+    display: block;
+  }
+
+  .stage {
+    display: none;
+  }
+
+  .item {
+    min-height: 0;
+    padding: 2rem 0 3rem;
+    opacity: 1;
+  }
+
+  .inline {
+    display: block;
+    margin: 0 -8vw 0.5rem;
+  }
+
+  .inline img {
+    width: 100%;
+    height: auto;
+  }
+}

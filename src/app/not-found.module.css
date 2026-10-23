@@ -1,0 +1,25 @@
+.page {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 1.25rem;
+  min-height: 100svh;
+  padding: clamp(3rem, 10vh, 6rem) var(--gutter);
+}
+
+.dog {
+  width: clamp(6rem, 12vw, 9rem);
+  height: auto;
+  stroke-width: 2.6;
+}
+
+.title {
+  max-width: 14ch;
+  font-size: clamp(3.25rem, 9vw, 8.5rem);
+}
+
+.lede {
+  max-width: 26rem;
+  margin-bottom: 0.75rem;
+  color: var(--ink-soft);
+}

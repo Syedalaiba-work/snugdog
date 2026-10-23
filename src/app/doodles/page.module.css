@@ -1,0 +1,39 @@
+.sheet {
+  padding: clamp(2rem, 6vw, 5rem) var(--gutter);
+}
+
+.head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.head h1 {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+}
+
+.rule {
+  max-width: 34rem;
+  color: var(--ink-soft);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+.cell {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.art {
+  display: grid;
+  place-items: center;
+  min-height: 9rem;
+}

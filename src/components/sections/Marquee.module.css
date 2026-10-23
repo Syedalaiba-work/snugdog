@@ -1,0 +1,27 @@
+.band {
+  overflow: clip;
+  padding: clamp(1.25rem, 3vw, 2.5rem) 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.track {
+  display: flex;
+  gap: 0.6em;
+  width: max-content;
+  font-size: clamp(3rem, 9vw, 9rem);
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.track span::after {
+  content: "\2022";
+  margin-left: 0.6em;
+  -webkit-text-stroke: 0;
+  color: var(--paper);
+}
+
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--paper);
+}

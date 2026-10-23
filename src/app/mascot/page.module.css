@@ -1,0 +1,116 @@
+.sheet {
+  padding: clamp(2rem, 6vw, 5rem) var(--gutter);
+}
+
+.head {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+.head h1 {
+  font-size: clamp(3.5rem, 9vw, 8rem);
+}
+
+.intro {
+  max-width: 34rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- stage + pose switcher ---------- */
+
+.playground {
+  border-top: 1px solid var(--ink);
+}
+
+.modes {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 0 0;
+}
+
+.mode {
+  padding: 0.5rem 0;
+  color: var(--ink-soft);
+  border-bottom: 1.5px solid transparent;
+}
+
+.mode[aria-pressed="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.stage {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.poses {
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--rule);
+}
+
+.pose {
+  flex: 1 1 9rem;
+  display: flex;
+  gap: 0.75rem;
+  padding: 1.1rem 0.25rem 1.1rem 0;
+  border-top: 2px solid transparent;
+  margin-top: -1px;
+  color: var(--ink-soft);
+  text-align: left;
+  transition:
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+.pose span {
+  color: var(--ink-soft);
+}
+
+.pose:hover,
+.pose[aria-pressed="true"] {
+  color: var(--ink);
+}
+
+.pose[aria-pressed="true"] {
+  border-top-color: var(--ink);
+}
+
+/* ---------- reference blocks ---------- */
+
+.block {
+  margin-top: clamp(3rem, 8vw, 6rem);
+}
+
+.blockTitle {
+  margin-bottom: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+.cell {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem 1.25rem;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.cell img,
+.turntable {
+  width: 100%;
+  height: auto;
+}
+
+.turntable {
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+}

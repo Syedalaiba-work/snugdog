@@ -1,0 +1,6 @@
+# Normalise text files to LF in the repository; Git detects binaries (images, models, fonts) itself.
+* text=auto eol=lf
+
+*.blend binary
+*.glb binary
+*.wasm binary
